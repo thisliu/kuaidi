@@ -1,0 +1,20 @@
+{
+    "name": "wi1dcard/yii2-hejiang-express",
+    "type": "library",
+    "require": {
+        "php": ">=5.4",
+        "yiisoft/yii2": "~2.0.5",
+        "curl/curl": "^1.9"
+    },
+    "authors": [
+        {
+            "name": "wi1dcard",
+            "email": "yokka47@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hejiang\\Express\\" : "lib/"
+        }
+    }
+}
