@@ -1,5 +1,6 @@
 {
     "name": "wi1dcard/yii2-hejiang-express",
+    "description": "A waybill tracking library for Yii2, supported almost every express in China.",
     "type": "library",
     "require": {
         "php": ">=5.4",
