@@ -9,9 +9,9 @@ class Traces extends \yii\base\BaseObject implements \JsonSerializable, \Iterato
 {
     use ArrayAccessTrait;
     
-    protected const DATETIME = 'time';
-    protected const DESCRIPTION = 'desc';
-    protected const MEMO = 'memo';
+    const DATETIME = 'time';
+    const DESCRIPTION = 'desc';
+    const MEMO = 'memo';
 
     protected $data = [];
 
