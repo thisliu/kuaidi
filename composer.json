@@ -5,7 +5,7 @@
     "require": {
         "php": ">=5.4",
         "yiisoft/yii2": "~2.0.5",
-        "curl/curl": "^1.9"
+        "curl/curl": "^1.5"
     },
     "authors": [
         {
