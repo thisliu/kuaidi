@@ -7,14 +7,26 @@ use Hejiang\Express\Exceptions\TrackingException;
 
 trait TrackerTrait
 {
-    protected static function httpGet($apiUrl) : Curl
+    /**
+     * Run HTTP GET method
+     *
+     * @param string $apiUrl
+     * @return Curl
+     */
+    protected static function httpGet($apiUrl)
     {
         $curl = new Curl();
         $curl->get($apiUrl);
         return $curl;
     }
 
-    protected static function getJsonResponse(Curl $curl) : \stdClass
+    /**
+     * Parse JSON response
+     *
+     * @param Curl $curl
+     * @return \stdClass
+     */
+    protected static function getJsonResponse(Curl $curl)
     {
         $responseRaw = $curl->response;
         $response = json_decode($responseRaw);
