@@ -6,6 +6,10 @@ Thanks for your attention. This package is only used for my company projects, pl
 
 See `tests\index.php`。
 
+## Supported Expresses
+
+See `getSupportedExpresses()` method in each `Tracker`.
+
 ## About
 
 Working at: [Zhejiang Hejiang Technology Co., Ltd.](http://www.zjhejiang.com/)
