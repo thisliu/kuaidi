@@ -16,7 +16,7 @@ class Kuaidiwang extends BaseTracker implements TrackerInterface
             '澳大利亚邮政' => 'auspost',
             'AAE' => 'aae',
             '安信达' => 'anxindakuaixi',
-            '百世汇通' => 'huitongkuaidi',
+            '百世' => 'huitongkuaidi',
             '百福东方' => 'baifudongfang',
             'BHT' => 'bht',
             '邦送' => 'bangsongwuliu',

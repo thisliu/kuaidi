@@ -13,8 +13,8 @@ use Hejiang\Express\Exceptions\TrackingException;
 $wb = \Yii::createObject(
     [
         'class' => 'Hejiang\Express\Waybill',
-        'id' => '70105425727637',
-        'express' => '百世汇通',
+        'id' => '70044318801859',
+        'express' => '百世',
     ]
 );
 
