@@ -27,7 +27,7 @@ $tracker = \Yii::createObject(
 try {
     $traces = $wb->getTraces($tracker);
 } catch (TrackingException $ex) {
-    print_r($ex->getResponse());
+    var_dump($ex);
     exit;
 }
 
