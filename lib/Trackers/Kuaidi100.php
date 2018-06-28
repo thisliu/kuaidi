@@ -149,6 +149,8 @@ class Kuaidi100 extends BaseTracker implements TrackerInterface
             '芝麻开门' => 'zhimakaimen',
             '郑州建华' => 'zhengzhoujianhua',
             '中天万运' => 'zhongtianwanyun',
+            '邮政' => 'youzhengguonei',
+            '邮政国际' => 'youzhengguoji',
         ];
     }
 

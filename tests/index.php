@@ -13,14 +13,14 @@ use Hejiang\Express\Exceptions\TrackingException;
 $wb = \Yii::createObject(
     [
         'class' => 'Hejiang\Express\Waybill',
-        'id' => '70044318801859',
-        'express' => '百世',
+        'id' => '9892984739724',
+        'express' => '邮政',
     ]
 );
 
 $tracker = \Yii::createObject(
     [
-        'class' => 'Hejiang\Express\Trackers\Kuaidi100',
+        'class' => 'Hejiang\Express\Trackers\kuaidi100',
     ]
 );
 
