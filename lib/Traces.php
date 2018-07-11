@@ -35,14 +35,4 @@ class Traces extends \yii\base\BaseObject implements \JsonSerializable, \Iterato
     {
         return $this->toArray();
     }
-
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->data);
-    }
-
-    public function count()
-    {
-        return count($this->data);
-    }
 }
