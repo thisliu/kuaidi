@@ -4,10 +4,9 @@ namespace Hejiang\Express;
 
 use Hejiang\Express\Trackers\TrackerInterface;
 
-
 /**
  * Waybill model
- * 
+ *
  * @property-read Traces $traces
  */
 class Waybill extends \yii\base\BaseObject implements \JsonSerializable
@@ -55,8 +54,7 @@ class Waybill extends \yii\base\BaseObject implements \JsonSerializable
 
     public function getTraces(TrackerInterface $tracker = null)
     {
-        if($tracker != null)
-        {
+        if ($tracker != null) {
             $tracker->track($this);
         }
         return $this->traces;

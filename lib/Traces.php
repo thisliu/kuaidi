@@ -4,7 +4,6 @@ namespace Hejiang\Express;
 
 use yii\base\ArrayAccessTrait;
 
-
 class Traces extends \yii\base\BaseObject implements \JsonSerializable, \IteratorAggregate, \Countable, \ArrayAccess
 {
     use ArrayAccessTrait;

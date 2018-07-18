@@ -4,7 +4,6 @@ namespace Hejiang\Express\Trackers;
 
 use Hejiang\Express\Waybill;
 
-
 interface TrackerInterface
 {
     /**
@@ -14,11 +13,11 @@ interface TrackerInterface
      * @return void
      * @throws \Hejiang\Express\Exceptions\TrackingException
      */
-    function track(Waybill $waybill);
+    public function track(Waybill $waybill);
 
-    static function getSupportedExpresses();
+    static public function getSupportedExpresses();
 
-    static function isSupported($express);
+    static public function isSupported($express);
 
-    static function getExpressCode($expressName);
+    static public function getExpressCode($expressName);
 }
