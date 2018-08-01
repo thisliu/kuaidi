@@ -70,9 +70,14 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
         return $this;
     }
 
-    public function jsonSerialize()
+    public function toArray()
     {
         return $this->data;
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     public function getIterator()
