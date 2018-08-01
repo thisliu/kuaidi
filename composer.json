@@ -1,21 +1,20 @@
 {
-    "name": "wi1dcard/yii2-hejiang-express",
-    "description": "A waybill tracking library for Yii2, supported almost every express in China.",
+    "name": "wi1dcard/kuaidi",
+    "description": "（免费快递查询扩展包）A wrapper library of multiple free express tracking APIs.",
     "type": "library",
     "require": {
         "php": ">=5.4",
-        "yiisoft/yii2": "~2.0.5",
         "curl/curl": "^1.5"
     },
     "authors": [
         {
             "name": "wi1dcard",
-            "email": "yokka47@qq.com"
+            "email": "wi1dcard@qq.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Hejiang\\Express\\" : "lib/"
+            "Kuaidi\\" : "lib/"
         }
     }
 }
