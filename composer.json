@@ -2,6 +2,7 @@
     "name": "wi1dcard/kuaidi",
     "description": "（免费快递查询扩展包）A wrapper library of multiple free express tracking APIs.",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": ">=5.4",
         "curl/curl": "^1.5"
