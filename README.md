@@ -1,6 +1,8 @@
 # Kuaidi - 免费快递查询扩展包
 
-本扩展包集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并进行程度的统一化。
+本扩展包集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并进行一定程度的统一化。
+
+本项目 [GitHub](https://github.com/wi1dcard/kuaidi) / [Gitee（码云）](https://gitee.com/wi1dcard/kuaidi)。
 
 ![](https://i.loli.net/2018/08/01/5b6180a5e13f0.png)
 
@@ -26,39 +28,39 @@
 
 ## 使用方法
 
-1. 创建 `Waybill`（运单）实例。
+### 1. 创建运单
 
-  ```php
-  $waybill = new \Kuaidi\Waybill(
-      '运单编号', 
-      '快递公司名称'
-  );
-  ```
+```php
+$waybill = new \Kuaidi\Waybill(
+    '运单编号', 
+    '快递公司名称'
+);
+```
 
-  「快递100」支持自动识别，可不填快递公司名称。
+「快递100」支持自动识别，可不填快递公司名称。
 
-2. 查！
+### 2. 查询
 
-  ```php
-  (new \Kuaidi\Trackers\Kuaidi100)->track($waybill);
-  (new \Kuaidi\Trackers\Kuaidiwang)->track($waybill);
-  (new \Kuaidi\Trackers\Kuaidiniao('Business ID', 'APP Key'))->track($waybill);
-  ```
+```php
+(new \Kuaidi\Trackers\Kuaidi100)->track($waybill);
+(new \Kuaidi\Trackers\Kuaidiwang)->track($waybill);
+(new \Kuaidi\Trackers\Kuaidiniao('Business ID', 'APP Key'))->track($waybill);
+```
 
-  通常三选一即可，推荐使用「快递100」。
+通常三选一即可，推荐使用「快递100」。
 
-  若查询过程出错，或接口返回失败将会抛出 `Kuaidi\TrackingException`。
+若查询过程出错，或接口返回失败将会抛出 `Kuaidi\TrackingException`。
 
-3. 获得数据。
+### 3. 获得数据
 
-  ```php
-  // 获取状态，所有状态列表见 `Waybill::STATUS_*` 常量。
-  $waybill->getStatus();
-  // 获取详情，支持直接 foreach / while / 数组下标 形式访问。
-  $waybill->getTraces(); 
-  ```
+```php
+// 获取状态，所有状态列表见 `Waybill::STATUS_*` 常量。
+$waybill->getStatus();
+// 获取详情，支持直接 foreach / while / 数组下标 形式访问。
+$waybill->getTraces(); 
+```
 
-  实际项目中，可自行封装辅助函数以便于使用。
+实际项目中，可自行封装辅助函数以便于使用。
 
 ## 结语
 
