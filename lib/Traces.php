@@ -4,11 +4,31 @@ namespace Kuaidi;
 
 class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \ArrayAccess
 {
-    const DATETIME = 'datetime';
-    const DESCRIPTION = 'desc';
-    const MEMO = 'memo';
+    /**
+     * 日期时间字段
+     */
+    const DATETIME      = 'datetime';
+    
+    /**
+     * 描述字段
+     */
+    const DESCRIPTION   = 'desc';
+    
+    /**
+     * 备注字段
+     */
+    const MEMO          = 'memo';
 
+    /**
+     * 储存数据的实际数组
+     *
+     * @var array
+     */
     protected $data = [];
+
+    protected function __construct()
+    {
+    }
 
     /**
      * 解析路径
