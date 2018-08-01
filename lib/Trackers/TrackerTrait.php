@@ -51,7 +51,7 @@ trait TrackerTrait
         }
         if ($this instanceof DetectorInterface) {
             $list = $this->detect($waybill);
-            if(count($list) > 0) {
+            if (count($list) > 0) {
                 return reset($list);
             }
         }
