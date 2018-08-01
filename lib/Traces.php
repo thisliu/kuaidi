@@ -3,7 +3,7 @@
 namespace Kuaidi;
 
 class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \ArrayAccess
-{   
+{
     const DATETIME = 'datetime';
     const DESCRIPTION = 'desc';
     const MEMO = 'memo';
@@ -13,10 +13,10 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
     public static function parse($traces, $dateTime, $description, $memo)
     {
         $instance = new static();
-        foreach($traces as $trace) {
+        foreach ($traces as $trace) {
             $instance->data[] = [
-                static::DATETIME => $trace->$dateTime, 
-                static::DESCRIPTION => $trace->$description, 
+                static::DATETIME => $trace->$dateTime,
+                static::DESCRIPTION => $trace->$description,
                 static::MEMO => $trace->$memo
             ];
         }

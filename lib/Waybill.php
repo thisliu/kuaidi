@@ -72,7 +72,7 @@ class Waybill
      * 运单实时状态
      *
      * @var int
-     * 
+     *
      * @see self::STATUS_*
      */
     public $status;
