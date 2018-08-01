@@ -1,6 +1,6 @@
 <?php
 
-namespace Hejiang\Express;
+namespace Kuaidi;
 
 abstract class Status
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Hejiang\Express;
+namespace Kuaidi;
 
-use Hejiang\Express\Trackers\TrackerInterface;
+use Kuaidi\Trackers\TrackerInterface;
 
 /**
  * Waybill model
  *
  * @property-read Traces $traces
  */
-class Waybill extends \yii\base\BaseObject implements \JsonSerializable
+class Waybill implements \JsonSerializable
 {
     /**
      * Unique ID of waybill
@@ -49,7 +49,6 @@ class Waybill extends \yii\base\BaseObject implements \JsonSerializable
     public function __construct()
     {
         $this->traces = new Traces();
-        parent::__construct();
     }
 
     public function getTraces(TrackerInterface $tracker = null)

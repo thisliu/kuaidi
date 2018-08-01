@@ -1,6 +1,6 @@
 <?php
 
-namespace Hejiang\Express\Exceptions;
+namespace Kuaidi\Exceptions;
 
 class TrackingException extends \Exception
 {

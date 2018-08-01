@@ -1,12 +1,13 @@
 <?php
 
-namespace Hejiang\Express\Trackers;
+namespace Kuaidi\Trackers;
 
 use Curl\Curl;
-use Hejiang\Express\Exceptions\TrackingException;
-use Hejiang\Express\Waybill;
+use Kuaidi\Exceptions\TrackingException;
+use Kuaidi\Waybill;
+use Kuaidi\Status;
 
-class Kuaidiniao extends BaseTracker implements TrackerInterface
+class Kuaidiniao implements TrackerInterface
 {
     use TrackerTrait;
 
@@ -17,6 +18,7 @@ class Kuaidiniao extends BaseTracker implements TrackerInterface
     public static function getSupportedExpresses()
     {
         return [
+            '京东' => 'JD',
             '顺丰' => 'SF',
             '申通' => 'STO',
             '韵达' => 'YD',
@@ -153,7 +155,7 @@ class Kuaidiniao extends BaseTracker implements TrackerInterface
         ];
         $waybill->status = $statusMap[intval($response->State)];
         foreach ($response->Traces as $trace) {
-            $waybill->traces->append($trace->AcceptTime, $trace->AcceptStation, $trace->Remark);
+            $waybill->getTraces()->append($trace->AcceptTime, $trace->AcceptStation, $trace->Remark);
         }
     }
 }

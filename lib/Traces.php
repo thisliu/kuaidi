@@ -1,12 +1,10 @@
 <?php
 
-namespace Hejiang\Express;
+namespace Kuaidi;
 
-use yii\base\ArrayAccessTrait;
-
-class Traces extends \yii\base\BaseObject implements \JsonSerializable, \IteratorAggregate, \Countable, \ArrayAccess
+class Traces implements \JsonSerializable // , \IteratorAggregate, \Countable, \ArrayAccess
 {
-    use ArrayAccessTrait;
+    // use ArrayAccessTrait;
     
     const DATETIME = 'time';
     const DESCRIPTION = 'desc';

@@ -1,12 +1,13 @@
 <?php
 
-namespace Hejiang\Express\Trackers;
+namespace Kuaidi\Trackers;
 
-use Hejiang\Express\Exceptions\TrackingException;
-use Hejiang\Express\Status;
-use Hejiang\Express\Waybill;
+use Kuaidi\Exceptions\TrackingException;
+use Kuaidi\Status;
+use Kuaidi\Waybill;
+use Curl\Curl;
 
-class Kuaidi100 extends BaseTracker implements TrackerInterface
+class Kuaidi100 implements TrackerInterface
 {
     use TrackerTrait;
 
@@ -160,7 +161,7 @@ class Kuaidi100 extends BaseTracker implements TrackerInterface
             . urlencode(static::getExpressCode($waybill->express))
             . '&postid='
             . urlencode($waybill->id);
-        $curl = static::httpGet($apiUrl);
+        $curl = (new Curl)->get($apiUrl);
         $response = static::getJsonResponse($curl);
 
         if ($response->status != 200) {
@@ -177,7 +178,7 @@ class Kuaidi100 extends BaseTracker implements TrackerInterface
         ];
         $waybill->status = $statusMap[intval($response->state)];
         foreach ($response->data as $trace) {
-            $waybill->traces->append($trace->time, $trace->context, $trace->location);
+            $waybill->getTraces()->append($trace->time, $trace->context, $trace->location);
         }
     }
 }

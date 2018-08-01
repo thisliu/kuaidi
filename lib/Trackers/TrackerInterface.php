@@ -1,17 +1,17 @@
 <?php
 
-namespace Hejiang\Express\Trackers;
+namespace Kuaidi\Trackers;
 
-use Hejiang\Express\Waybill;
+use Kuaidi\Waybill;
 
 interface TrackerInterface
 {
     /**
-     * Track a willbay and return traces
+     * 追踪包裹
      *
      * @param Waybill $waybill
      * @return void
-     * @throws \Hejiang\Express\Exceptions\TrackingException
+     * @throws \Kuaidi\Exceptions\TrackingException
      */
     public function track(Waybill $waybill);
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Hejiang\Express\Trackers;
+namespace Kuaidi\Trackers;
 
 use Curl\Curl;
-use Hejiang\Express\Exceptions\TrackingException;
+use Kuaidi\Exceptions\TrackingException;
 
 trait TrackerTrait
 {
