@@ -10,6 +10,15 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
 
     protected $data = [];
 
+    /**
+     * 解析路径
+     *
+     * @param mixed $traces
+     * @param string $dateTime
+     * @param string $description
+     * @param string $memo
+     * @return static
+     */
     public static function parse($traces, $dateTime, $description, $memo)
     {
         $instance = new static();
@@ -23,19 +32,27 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
         return $instance;
     }
 
-    public function sort()
+    /**
+     * 对数据以时间顺序进行排序
+     *
+     * @param bool $desc 是否倒序
+     * @return static
+     */
+    public function sort($desc = true)
     {
-        usort($this->data, function ($left, $right) {
+        usort($this->data, function ($left, $right) use ($desc) {
             if ($left[static::DATETIME] == $right[static::DATETIME]) {
                 return 0;
             }
-            return $left[static::DATETIME] < $right[static::DATETIME] ? 1 : -1; // 倒序
+            $oper = $desc ? 1 : -1;
+            return $left[static::DATETIME] < $right[static::DATETIME] ? $oper : -$oper;
         });
+        return $this;
     }
 
     public function jsonSerialize()
     {
-        return $this->toArray();
+        return $this->data;
     }
 
     public function getIterator()

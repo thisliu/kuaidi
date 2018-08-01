@@ -11,10 +11,13 @@ try {
     exit;
 }
 
+$traces = $waybill->getTraces();
+$traces->sort();
+
 if(php_sapi_name() == 'cli') {
-    foreach ($waybill->getTraces() as $trace) {
+    foreach ($traces as $trace) {
         echo $trace['datetime'] . "\t" . $trace['desc'] . PHP_EOL;
     }
 } else {
-    echo json_encode($waybill->getTraces(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    echo json_encode($traces, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
