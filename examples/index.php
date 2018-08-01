@@ -2,20 +2,19 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Kuaidi\Waybill;
-use Kuaidi\Trackers\Kuaidi100;
-use Kuaidi\Trackers\Kuaidiwang;
-use Kuaidi\Trackers\Kuaidiniao;
-
-$wb = new Waybill('800832115688166239', '圆通');
-
-$tracker = new Kuaidi100();
+$waybill = new \Kuaidi\Waybill('800832115688166239', '圆通');
 
 try {
-    $tracker->track($wb);
+    (new \Kuaidi\Trackers\Kuaidi100)->track($waybill);
 } catch (\Exception $ex) {
     print_r($ex);
     exit;
 }
 
-print_r($wb);
+if(php_sapi_name() == 'cli') {
+    foreach ($waybill->getTraces() as $trace) {
+        echo $trace['datetime'] . "\t" . $trace['desc'] . PHP_EOL;
+    }
+} else {
+    echo json_encode($waybill->getTraces(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+}
