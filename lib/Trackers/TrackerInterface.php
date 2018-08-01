@@ -7,7 +7,7 @@ use Kuaidi\Waybill;
 interface TrackerInterface
 {
     /**
-     * 追踪包裹
+     * 运单追踪
      *
      * @param Waybill $waybill
      * @return void
@@ -15,9 +15,26 @@ interface TrackerInterface
      */
     public function track(Waybill $waybill);
 
-    static public function getSupportedExpresses();
+    /**
+     * 获取完整的快递公司支持列表
+     *
+     * @return array
+     */
+    public static function getSupportedExpresses();
 
-    static public function isSupported($express);
+    /**
+     * 获取是否支持某个快递公司
+     *
+     * @param string $expressName
+     * @return bool
+     */
+    public static function isSupported($express);
 
-    static public function getExpressCode($expressName);
+    /**
+     * 获取某个快递公司的代码
+     *
+     * @param string $expressName
+     * @return string
+     */
+    public static function getExpressCode($expressName);
 }

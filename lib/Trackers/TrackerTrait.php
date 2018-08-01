@@ -8,20 +8,7 @@ use Kuaidi\Exceptions\TrackingException;
 trait TrackerTrait
 {
     /**
-     * Run HTTP GET method
-     *
-     * @param string $apiUrl
-     * @return Curl
-     */
-    protected static function httpGet($apiUrl)
-    {
-        $curl = new Curl();
-        $curl->get($apiUrl);
-        return $curl;
-    }
-
-    /**
-     * Parse JSON response
+     * 解析 JSON 响应
      *
      * @param Curl $curl
      * @return \stdClass
@@ -31,7 +18,7 @@ trait TrackerTrait
         $responseRaw = $curl->response;
         $response = json_decode($responseRaw);
         if ($response == false) {
-            throw new TrackingException('Response data cannot be decoded as json.', $responseRaw);
+            throw new TrackingException('Response data cannot be decoded as json', $responseRaw);
         }
         return $response;
     }
@@ -48,7 +35,7 @@ trait TrackerTrait
             $list = static::getSupportedExpresses();
             return $list[$expressName];
         } else {
-            throw new TrackingException("Unsupported express name: {$expressName}");
+            throw new \InvalidArgumentException("Unsupported express name: {$expressName}");
         }
     }
 }

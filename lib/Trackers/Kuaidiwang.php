@@ -2,10 +2,10 @@
 
 namespace Kuaidi\Trackers;
 
-use Kuaidi\Exceptions\TrackingException;
-use Kuaidi\Status;
-use Kuaidi\Waybill;
 use Curl\Curl;
+use Kuaidi\Exceptions\TrackingException;
+use Kuaidi\Waybill;
+use Kuaidi\Traces;
 
 class Kuaidiwang implements TrackerInterface
 {
@@ -155,7 +155,6 @@ class Kuaidiwang implements TrackerInterface
 
     public function track(Waybill $waybill)
     {
-
         $apiUrl = 'http://www.kuaidi.com/index-ajaxselectcourierinfo-'
             . urlencode($waybill->id)
             . '-'
@@ -168,18 +167,18 @@ class Kuaidiwang implements TrackerInterface
             throw new TrackingException($response->reason, $response);
         }
         $statusMap = [
-            0 => Status::STATUS_UNKNOWN,
-            3 => Status::STATUS_TRANSPORTING,
-            4 => Status::STATUS_PICKEDUP,
-            5 => Status::STATUS_REJECTED,
-            6 => Status::STATUS_DELIVERED,
-            7 => Status::STATUS_RETURNED,
-            8 => Status::STATUS_DELIVERING,
-            9 => Status::STATUS_RETURNING,
+            0 => Waybill::STATUS_UNKNOWN,
+            3 => Waybill::STATUS_TRANSPORTING,
+            4 => Waybill::STATUS_PICKEDUP,
+            5 => Waybill::STATUS_REJECTED,
+            6 => Waybill::STATUS_DELIVERED,
+            7 => Waybill::STATUS_RETURNED,
+            8 => Waybill::STATUS_DELIVERING,
+            9 => Waybill::STATUS_RETURNING,
         ];
         $waybill->status = $statusMap[intval($response->status)];
-        foreach ($response->data as $trace) {
-            $waybill->getTraces()->append($trace->time, $trace->context);
-        }
+        $waybill->setTraces(
+            Traces::parse($response->Traces, 'time', 'context', '')
+        );
     }
 }

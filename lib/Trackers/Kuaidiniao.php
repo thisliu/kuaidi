@@ -5,15 +5,27 @@ namespace Kuaidi\Trackers;
 use Curl\Curl;
 use Kuaidi\Exceptions\TrackingException;
 use Kuaidi\Waybill;
-use Kuaidi\Status;
+use Kuaidi\Traces;
 
 class Kuaidiniao implements TrackerInterface
 {
     use TrackerTrait;
 
-    public $EBusinessID;
+    public $businessId;
 
-    public $AppKey;
+    public $appKey;
+
+    /**
+     * 快递鸟
+     *
+     * @param string $businessId EBusinessID
+     * @param string $appKey AppKey
+     */
+    public function __construct($businessId, $appKey)
+    {
+        $this->EBusinessID = $businessId;
+        $this->AppKey = $appKey;
+    }
 
     public static function getSupportedExpresses()
     {
@@ -126,22 +138,21 @@ class Kuaidiniao implements TrackerInterface
 
     public function track(Waybill $waybill)
     {
-        $curl = new Curl();
         $requestData = json_encode([
-            'ShipperCode' => static::getExpressCode($waybill->express),
             'LogisticCode' => $waybill->id,
-            'OrderCode' => $waybill->orderId,
+            'ShipperCode' => static::getExpressCode($waybill->express),
+            // 'OrderCode' => $waybill->orderId,
         ]);
-        $postContent = [
+        $params = [
             'RequestData' => urlencode($requestData),
-            'EBusinessID' => $this->EBusinessID,
+            'EBusinessID' => $this->businessId,
             'RequestType' => '1002',
-            'DataSign' => base64_encode(md5($requestData . $this->AppKey)),
+            'DataSign' => base64_encode(md5($requestData . $this->appKey)),
             'DataType' => '2',
         ];
-        $curl->post(
+        $curl = (new Curl)->post(
             'http://api.kdniao.cc/Ebusiness/EbusinessOrderHandle.aspx',
-            $postContent
+            $params
         );
         $response = static::getJsonResponse($curl);
 
@@ -149,13 +160,13 @@ class Kuaidiniao implements TrackerInterface
             throw new TrackingException($response->Reason, $response);
         }
         $statusMap = [
-            2 => Status::STATUS_TRANSPORTING,
-            3 => Status::STATUS_DELIVERED,
-            4 => Status::STATUS_REJECTED,
+            2 => Waybill::STATUS_TRANSPORTING,
+            3 => Waybill::STATUS_DELIVERED,
+            4 => Waybill::STATUS_REJECTED,
         ];
         $waybill->status = $statusMap[intval($response->State)];
-        foreach ($response->Traces as $trace) {
-            $waybill->getTraces()->append($trace->AcceptTime, $trace->AcceptStation, $trace->Remark);
-        }
+        $waybill->setTraces(
+            Traces::parse($response->Traces, 'AcceptTime', 'AcceptStation', 'Remark')
+        );
     }
 }

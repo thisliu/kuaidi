@@ -2,65 +2,101 @@
 
 namespace Kuaidi;
 
-use Kuaidi\Trackers\TrackerInterface;
-
-/**
- * Waybill model
- *
- * @property-read Traces $traces
- */
-class Waybill implements \JsonSerializable
+class Waybill
 {
     /**
-     * Unique ID of waybill
+     * 揽件
+     */
+    const STATUS_UNKNOWN = -1;
+
+    /**
+     * 揽件
+     */
+    const STATUS_PICKEDUP = 0;
+
+    /**
+     * 发出
+     */
+    const STATUS_DEPART = 1;
+
+    /**
+     * 在途
+     */
+    const STATUS_TRANSPORTING = 2;
+
+    /**
+     * 派件
+     */
+    const STATUS_DELIVERING = 3;
+
+    /**
+     * 签收
+     */
+    const STATUS_DELIVERED = 4;
+
+    /**
+     * 自取
+     */
+    const STATUS_SELFPICKUP = 5;
+
+    /**
+     * 疑难
+     */
+    const STATUS_REJECTED = 6;
+
+    /**
+     * 退回
+     */
+    const STATUS_RETURNING = 7;
+
+    /**
+     * 退签
+     */
+    const STATUS_RETURNED = 8;
+
+    /**
+     * 运单 ID
      *
      * @var string
      */
     public $id;
 
     /**
-     * Unique ID of waybill order
-     *
-     * @var string
-     */
-    public $orderId;
-
-    /**
-     * Express company name, not ended-with `物流` / `快递` / `快运` / `速递` / `速运`
+     * 快递公司名称，不带结尾 `物流` / `快递` / `快运` / `速递` / `速运`
      *
      * @var string
      */
     public $express;
 
     /**
-     * Status of waybill
+     * 运单实时状态
      *
-     * @var string|int
+     * @var int
+     * 
+     * @see self::STATUS_*
      */
     public $status;
-    
+
     /**
-     * Traces data
+     * 运单路径
      *
      * @var Traces
      */
     protected $traces;
 
-    public function __construct()
+    public function __construct($id, $express = '')
     {
-        $this->traces = new Traces();
+        $this->id = $id;
+        $this->express = $express;
     }
 
-    public function getTraces(TrackerInterface $tracker = null)
+    public function setTraces(Traces $traces)
     {
-        if ($tracker != null) {
-            $tracker->track($this);
-        }
+        $this->traces = $traces;
+    }
+
+    public function getTraces()
+    {
         return $this->traces;
-    }
-
-    public function jsonSerialize()
-    {
-        return get_object_vars($this);
     }
 }
