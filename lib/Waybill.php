@@ -66,7 +66,7 @@ class Waybill
      *
      * @var string
      */
-    public $express;
+    protected $express;
 
     /**
      * 运单实时状态
@@ -75,7 +75,7 @@ class Waybill
      *
      * @see self::STATUS_*
      */
-    public $status;
+    protected $status;
 
     /**
      * 运单路径
@@ -98,5 +98,28 @@ class Waybill
     public function getTraces()
     {
         return $this->traces;
+    }
+
+    public function setStatus($status, $map = null)
+    {
+        if($map !== null) {
+            $status = $map[intval($status)];
+        }
+        $this->status = $status;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getExpress()
+    {
+        return $this->express;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

@@ -7,7 +7,7 @@ use Kuaidi\Exceptions\TrackingException;
 use Kuaidi\Waybill;
 use Kuaidi\Traces;
 
-class Kuaidi100 implements TrackerInterface
+class Kuaidi100 implements TrackerInterface, DetectorInterface
 {
     use TrackerTrait;
 
@@ -155,11 +155,24 @@ class Kuaidi100 implements TrackerInterface
         ];
     }
 
+    public function detect(Waybill $waybill)
+    {
+        $apiUrl = 'http://www.kuaidi100.com/autonumber/auto?num=' . $waybill->id;
+        $curl = (new Curl)->get($apiUrl);
+        $response = static::getJsonResponse($curl, true);
+        return array_map(
+            function ($item) {
+                return $item['comCode'];
+            },
+            $response
+        );
+    }
+
     public function track(Waybill $waybill)
     {
         $apiUrl = 'http://www.kuaidi100.com/query?' . http_build_query([
             'postid' => $waybill->id,
-            'type' => static::getExpressCode($waybill->express)
+            'type' => $this->getExpressCode($waybill)
         ]);
         $curl = (new Curl)->get($apiUrl);
         $response = static::getJsonResponse($curl);
@@ -176,7 +189,7 @@ class Kuaidi100 implements TrackerInterface
             5 => Waybill::STATUS_DELIVERING,
             6 => Waybill::STATUS_RETURNING,
         ];
-        $waybill->status = $statusMap[intval($response->state)];
+        $waybill->setStatus($response->state, $statusMap);
         $waybill->setTraces(
             Traces::parse($response->data, 'time', 'context', 'location')
         );

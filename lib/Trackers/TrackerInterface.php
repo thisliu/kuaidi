@@ -21,20 +21,4 @@ interface TrackerInterface
      * @return array
      */
     public static function getSupportedExpresses();
-
-    /**
-     * 获取是否支持某个快递公司
-     *
-     * @param string $expressName
-     * @return bool
-     */
-    public static function isSupported($express);
-
-    /**
-     * 获取某个快递公司的代码
-     *
-     * @param string $expressName
-     * @return string
-     */
-    public static function getExpressCode($expressName);
 }

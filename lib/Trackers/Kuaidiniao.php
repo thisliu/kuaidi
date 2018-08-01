@@ -23,8 +23,8 @@ class Kuaidiniao implements TrackerInterface
      */
     public function __construct($businessId, $appKey)
     {
-        $this->EBusinessID = $businessId;
-        $this->AppKey = $appKey;
+        $this->businessId = $businessId;
+        $this->appKey = $appKey;
     }
 
     public static function getSupportedExpresses()
@@ -140,7 +140,7 @@ class Kuaidiniao implements TrackerInterface
     {
         $requestData = json_encode([
             'LogisticCode' => $waybill->id,
-            'ShipperCode' => static::getExpressCode($waybill->express),
+            'ShipperCode' => $this->getExpressCode($waybill)
             // 'OrderCode' => $waybill->orderId,
         ]);
         $params = [
@@ -164,7 +164,7 @@ class Kuaidiniao implements TrackerInterface
             3 => Waybill::STATUS_DELIVERED,
             4 => Waybill::STATUS_REJECTED,
         ];
-        $waybill->status = $statusMap[intval($response->State)];
+        $waybill->setStatus($response->State, $statusMap);
         $waybill->setTraces(
             Traces::parse($response->Traces, 'AcceptTime', 'AcceptStation', 'Remark')
         );

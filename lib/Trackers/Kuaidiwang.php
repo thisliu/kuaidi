@@ -158,7 +158,7 @@ class Kuaidiwang implements TrackerInterface
         $apiUrl = 'http://www.kuaidi.com/index-ajaxselectcourierinfo-'
             . urlencode($waybill->id)
             . '-'
-            . urlencode(static::getExpressCode($waybill->express))
+            . urlencode($this->getExpressCode($waybill))
             . '.html';
         $curl = (new Curl)->get($apiUrl);
         $response = static::getJsonResponse($curl);
@@ -176,7 +176,7 @@ class Kuaidiwang implements TrackerInterface
             8 => Waybill::STATUS_DELIVERING,
             9 => Waybill::STATUS_RETURNING,
         ];
-        $waybill->status = $statusMap[intval($response->status)];
+        $waybill->setStatus($response->status, $statusMap);
         $waybill->setTraces(
             Traces::parse($response->Traces, 'time', 'context', '')
         );
