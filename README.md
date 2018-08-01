@@ -4,8 +4,6 @@
 
 本项目 [GitHub](https://github.com/wi1dcard/kuaidi) / [Gitee（码云）](https://gitee.com/wi1dcard/kuaidi)。
 
-![](https://i.loli.net/2018/08/01/5b6180a5e13f0.png)
-
 ## 小试牛刀
 
 ⚠️ 本扩展包内，所有快递公司名称，均不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼。
@@ -16,15 +14,19 @@
   composer require wi1dcard/kuaidi
   ```
 
-2. 运行 [`examples/index.php`](examples/index.php) 文件。
+2. 运行 [`examples/index.php`](examples/index.php) 或请求此文件。
 
   ```bash
-  examples/index.php <运单编号> [快递公司名称]
+  php examples/index.php <运单编号> [快递公司名称]
   ```
 
-  或请求 `http://.../examples/index.php?number=<运单编号>&express=[快递公司名称]`
+  ```
+  http://.../examples/index.php?number=<运单编号>&express=[快递公司名称]
+  ```
 
-  即可查看效果。
+  其中，快递公司名称可省略；效果如下：
+
+  ![](https://i.loli.net/2018/08/01/5b6180a5e13f0.png)
 
 ## 使用方法
 
