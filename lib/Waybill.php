@@ -55,14 +55,15 @@ class Waybill
     const STATUS_RETURNED = 8;
 
     /**
-     * 运单 ID
+     * 运单编号
      *
      * @var string
      */
     public $id;
 
     /**
-     * 快递公司名称，不带结尾 `物流` / `快递` / `快运` / `速递` / `速运`
+     * 快递公司名称
+     * 注意：不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼
      *
      * @var string
      */
@@ -84,6 +85,12 @@ class Waybill
      */
     protected $traces;
 
+    /**
+     * 运单
+     *
+     * @param string $id 运单编号
+     * @param string $express 快递公司名称
+     */
     public function __construct($id, $express = '')
     {
         $this->id = $id;
@@ -102,7 +109,7 @@ class Waybill
 
     public function setStatus($status, $map = null)
     {
-        if($map !== null) {
+        if ($map !== null) {
             $status = $map[intval($status)];
         }
         $this->status = $status;
