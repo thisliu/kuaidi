@@ -102,6 +102,11 @@ class Waybill
         $this->traces = $traces;
     }
 
+    /**
+     * 获取运单详情
+     *
+     * @return Traces
+     */
     public function getTraces()
     {
         return $this->traces;
@@ -115,6 +120,11 @@ class Waybill
         $this->status = $status;
     }
 
+    /**
+     * 获取运单状态
+     *
+     * @return int
+     */
     public function getStatus()
     {
         return $this->status;
