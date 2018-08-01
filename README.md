@@ -2,7 +2,11 @@
 
 本扩展包集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并进行程度的统一化。
 
-## 用法
+![](https://i.loli.net/2018/08/01/5b6180a5e13f0.png)
+
+## 小试牛刀
+
+⚠️ 本扩展包内，所有快递公司名称，均不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼。
 
 1. 安装。
 
@@ -10,30 +14,51 @@
   composer require wi1dcard/kuaidi
   ```
 
-2. 创建 `Waybill`（运单） 实例。
+2. 运行 [`examples/index.php`](examples/index.php) 文件。
 
-  ```php
-  // 快递 100 支持不填快递公司名称。
-  $waybill = new \Kuaidi\Waybill('运单编号', '快递公司名称（不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼）');
+  ```bash
+  examples/index.php <运单编号> [快递公司名称]
   ```
 
-3. 查！
+  或请求 `http://.../examples/index.php?number=<运单编号>&express=[快递公司名称]`
+
+  即可查看效果。
+
+## 使用方法
+
+1. 创建 `Waybill`（运单）实例。
 
   ```php
-  // 三选一
+  $waybill = new \Kuaidi\Waybill(
+      '运单编号', 
+      '快递公司名称'
+  );
+  ```
+
+  「快递100」支持自动识别，可不填快递公司名称。
+
+2. 查！
+
+  ```php
   (new \Kuaidi\Trackers\Kuaidi100)->track($waybill);
   (new \Kuaidi\Trackers\Kuaidiwang)->track($waybill);
   (new \Kuaidi\Trackers\Kuaidiniao('Business ID', 'APP Key'))->track($waybill);
   ```
 
-4. 获得数据。
+  通常三选一即可，推荐使用「快递100」。
+
+  若查询过程出错，或接口返回失败将会抛出 `Kuaidi\TrackingException`。
+
+3. 获得数据。
 
   ```php
-  $waybill->getStatus(); // 获取状态
-  $waybill->getTraces(); // 获取详情
+  // 获取状态，所有状态列表见 `Waybill::STATUS_*` 常量。
+  $waybill->getStatus();
+  // 获取详情，支持直接 foreach / while / 数组下标 形式访问。
+  $waybill->getTraces(); 
   ```
 
-5. 完整实例代码请移步 [`examples`](examples/) 目录。
+  实际项目中，可自行封装辅助函数以便于使用。
 
 ## 结语
 
