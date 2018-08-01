@@ -2,22 +2,21 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$waybill = new \Kuaidi\Waybill('800832115688166239', '圆通');
+error_reporting(E_ALL);
 
-try {
+function track($number, $express = '')
+{
+    $waybill = new \Kuaidi\Waybill($number, $express);
     (new \Kuaidi\Trackers\Kuaidi100)->track($waybill);
-} catch (\Exception $ex) {
-    print_r($ex);
-    exit;
+    return $waybill->getTraces()->sort();
 }
 
-$traces = $waybill->getTraces();
-$traces->sort();
-
-if(php_sapi_name() == 'cli') {
+if (php_sapi_name() == 'cli') {
+    $traces = track($argv[1], isset($argv[2]) ? $argv[2] : '');
     foreach ($traces as $trace) {
         echo $trace['datetime'] . "\t" . $trace['desc'] . PHP_EOL;
     }
 } else {
+    $traces = track($_GET['number'], isset($_GET['express']) ? $_GET['express'] : '');
     echo json_encode($traces, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
