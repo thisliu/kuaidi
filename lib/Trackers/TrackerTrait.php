@@ -45,11 +45,15 @@ trait TrackerTrait
     public function getExpressCode(Waybill $waybill)
     {
         $express = $waybill->getExpress();
-        if ($express && static::isSupported($express)) {
-            $list = static::getSupportedExpresses();
-            return $list[$express];
-        }
-        if ($this instanceof DetectorInterface) {
+        if ($express) {
+            if (static::isSupported($express)) {
+                $list = static::getSupportedExpresses();
+                return $list[$express];
+            }
+            if (ctype_alnum($express)) {
+                return $express;
+            }
+        } elseif ($this instanceof DetectorInterface) {
             $list = $this->detect($waybill);
             if (count($list) > 0) {
                 return reset($list);
