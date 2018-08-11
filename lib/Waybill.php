@@ -88,7 +88,7 @@ class Waybill
     /**
      * 运单
      *
-     * @param string $id 运单编号
+     * @param string $id      运单编号
      * @param string $express 快递公司名称
      */
     public function __construct($id, $express = '')

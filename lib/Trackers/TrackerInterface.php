@@ -10,8 +10,10 @@ interface TrackerInterface
      * 运单追踪
      *
      * @param Waybill $waybill
-     * @return void
+     *
      * @throws \Kuaidi\Exceptions\TrackingException
+     *
+     * @return void
      */
     public function track(Waybill $waybill);
 

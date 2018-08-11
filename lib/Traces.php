@@ -7,17 +7,17 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
     /**
      * 日期时间字段
      */
-    const DATETIME      = 'datetime';
-    
+    const DATETIME = 'datetime';
+
     /**
      * 描述字段
      */
-    const DESCRIPTION   = 'desc';
-    
+    const DESCRIPTION = 'desc';
+
     /**
      * 备注字段
      */
-    const MEMO          = 'memo';
+    const MEMO = 'memo';
 
     /**
      * 储存数据的实际数组
@@ -33,10 +33,11 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
     /**
      * 解析路径
      *
-     * @param mixed $traces
+     * @param mixed  $traces
      * @param string $dateTime
      * @param string $description
      * @param string $memo
+     *
      * @return static
      */
     public static function parse($traces, $dateTime, $description, $memo)
@@ -44,11 +45,12 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
         $instance = new static();
         foreach ($traces as $trace) {
             $instance->data[] = [
-                static::DATETIME => $trace->$dateTime,
+                static::DATETIME    => $trace->$dateTime,
                 static::DESCRIPTION => $trace->$description,
-                static::MEMO => $trace->$memo
+                static::MEMO        => $trace->$memo,
             ];
         }
+
         return $instance;
     }
 
@@ -56,6 +58,7 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
      * 对数据以时间顺序进行排序
      *
      * @param bool $desc 是否倒序
+     *
      * @return static
      */
     public function sort($desc = true)
@@ -65,8 +68,10 @@ class Traces implements \JsonSerializable, \IteratorAggregate, \Countable, \Arra
                 return 0;
             }
             $oper = $desc ? 1 : -1;
+
             return $left[static::DATETIME] < $right[static::DATETIME] ? $oper : -$oper;
         });
+
         return $this;
     }
 
