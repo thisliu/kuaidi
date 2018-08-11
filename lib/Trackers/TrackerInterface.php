@@ -7,7 +7,7 @@ use Kuaidi\Waybill;
 interface TrackerInterface
 {
     /**
-     * 运单追踪
+     * 追踪运单（即：查快递）
      *
      * @param Waybill $waybill
      *

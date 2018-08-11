@@ -13,7 +13,7 @@ trait TrackerTrait
      *
      * @param Curl $curl
      *
-     * @return object
+     * @return object|array
      */
     protected static function getJsonResponse(Curl $curl, $assoc = false)
     {
