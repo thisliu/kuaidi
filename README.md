@@ -1,6 +1,10 @@
 # Kuaidi - 免费快递查询扩展包
 
-本扩展包集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并进行一定程度的统一化。
+集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并进行一定程度的统一化。
+
+[![Packagist](https://img.shields.io/packagist/v/wi1dcard/kuaidi.svg)](https://packagist.org/packages/wi1dcard/kuaidi)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wi1dcard/kuaidi/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wi1dcard/kuaidi/?branch=master)
+[![StyleCI](https://github.styleci.io/repos/136556586/shield?branch=master)](https://github.styleci.io/repos/136556586)
 
 本项目 [GitHub](https://github.com/wi1dcard/kuaidi) / [Gitee（码云）](https://gitee.com/wi1dcard/kuaidi)。
 
