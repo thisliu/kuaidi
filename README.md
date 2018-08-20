@@ -10,11 +10,11 @@
 
 ## 小试牛刀
 
-⚠️ 本扩展包内，所有快递公司名称，均不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼。
+**注意：本扩展包内所有快递公司名称，均不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼。**
 
 1. 克隆本仓库，并执行 `composer install` 安装所需依赖。
 
-2. 运行 [`examples/index.php`](examples/index.php) 或请求此文件。
+2. 「在命令行内运行」或「在浏览器内打开」[`examples/index.php`](examples/index.php)。
 
   ```bash
   php examples/index.php <运单编号> [快递公司名称]
