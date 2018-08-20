@@ -12,11 +12,7 @@
 
 ⚠️ 本扩展包内，所有快递公司名称，均不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼。
 
-1. 安装。
-
-  ```bash
-  composer require wi1dcard/kuaidi
-  ```
+1. 克隆本仓库，并执行 `composer install` 安装所需依赖。
 
 2. 运行 [`examples/index.php`](examples/index.php) 或请求此文件。
 
@@ -33,6 +29,12 @@
   ![](https://i.loli.net/2018/08/01/5b6180a5e13f0.png)
 
 ## 使用方法
+
+### 0. 安装
+
+```bash
+composer require wi1dcard/kuaidi
+```
 
 ### 1. 创建运单
 
