@@ -143,6 +143,9 @@ class Kuaidiniao implements TrackerInterface
             'ShipperCode'  => $this->getExpressCode($waybill),
             // 'OrderCode' => $waybill->orderId,
         ]);
+        if ($requestData === false) {
+            throw new \RuntimeException('Function json_encode returns false');
+        }
         $params = [
             'RequestData' => urlencode($requestData),
             'EBusinessID' => $this->businessId,
