@@ -17,7 +17,7 @@ class TrackingException extends \Exception
     /**
      * 创建异常
      *
-     * @param string      $message
+     * @param string             $message
      * @param object|string|null $response
      */
     public function __construct($message, $response = null)
