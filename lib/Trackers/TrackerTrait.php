@@ -13,13 +13,13 @@ trait TrackerTrait
      *
      * @param Curl $curl
      *
-     * @return object|array
+     * @return mixed
      */
     protected static function getJsonResponse(Curl $curl, $assoc = false)
     {
         $responseRaw = $curl->response;
         $response = json_decode($responseRaw, $assoc);
-        if ($response == false) {
+        if (json_last_error() !== 0) {
             throw new TrackingException('Response data cannot be decoded as json', $responseRaw);
         }
 
