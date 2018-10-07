@@ -10,7 +10,7 @@ class TrackingException extends \Exception
     /**
      * 响应数据
      *
-     * @var object
+     * @var object|string
      */
     protected $response;
 
@@ -18,7 +18,7 @@ class TrackingException extends \Exception
      * 创建异常
      *
      * @param string      $message
-     * @param object|null $response
+     * @param object|string|null $response
      */
     public function __construct($message, $response = null)
     {
@@ -29,7 +29,7 @@ class TrackingException extends \Exception
     /**
      * 获取响应数据
      *
-     * @return object
+     * @return object|string
      */
     public function getResponse()
     {
