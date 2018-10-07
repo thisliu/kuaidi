@@ -1,6 +1,6 @@
 {
     "name": "wi1dcard/kuaidi",
-    "description": "（免费快递查询扩展包）A wrapper library of multiple free express tracking APIs.",
+    "description": "A wrapper library of multiple free express tracking APIs in China.",
     "type": "library",
     "license": "MIT",
     "require": {

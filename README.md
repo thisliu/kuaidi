@@ -1,32 +1,38 @@
 # Kuaidi - 免费快递查询扩展包
 
-集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并进行一定程度的统一化。
+📦 集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并统一调用方式。
 
-[![Packagist](https://img.shields.io/packagist/v/wi1dcard/kuaidi.svg)](https://packagist.org/packages/wi1dcard/kuaidi)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wi1dcard/kuaidi/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wi1dcard/kuaidi/?branch=master)
+❤️ 本项目 [GitHub](https://github.com/wi1dcard/kuaidi) / [Gitee(码云)](https://gitee.com/wi1dcard/kuaidi)。
+
+[![Build Status](https://travis-ci.org/wi1dcard/kuaidi.svg?branch=master)](https://travis-ci.org/wi1dcard/kuaidi)
 [![StyleCI](https://github.styleci.io/repos/136556586/shield?branch=master)](https://github.styleci.io/repos/136556586)
+[![Packagist](https://img.shields.io/packagist/v/wi1dcard/kuaidi.svg)](https://packagist.org/packages/wi1dcard/kuaidi)
 
-本项目 [GitHub](https://github.com/wi1dcard/kuaidi) / [Gitee（码云）](https://gitee.com/wi1dcard/kuaidi)。
+* **目录**
+  * [小试牛刀](#小试牛刀)
+  * [使用方法](#使用方法)
+      * [0. 安装](#0-安装)
+      * [1. 创建运单](#1-创建运单)
+      * [2. 查询](#2-查询)
+      * [3. 获得数据](#3-获得数据)
+  * [结语](#结语)
+  * [声明](#声明)
 
 ## 小试牛刀
 
 **注意：本扩展包内所有快递公司名称，均不带结尾 `物流` / `快递` / `快运` / `速递` / `速运` 等字眼。**
 
-1. 克隆本仓库，并执行 `composer install` 安装所需依赖。
+克隆本仓库，并执行 `composer install` 安装所需依赖。
 
-2. 「在命令行内运行」或「在浏览器内打开」[`examples/index.php`](examples/index.php)。
+在命令行内运行。
 
-  ```bash
-  php examples/index.php <运单编号> [快递公司名称]
-  ```
+```bash
+php examples/index.php <运单编号> [快递公司名称]
+```
 
-  ```
-  http://.../examples/index.php?number=<运单编号>&express=[快递公司名称]
-  ```
+其中，快递公司名称可省略；效果如下：
 
-  其中，快递公司名称可省略；效果如下：
-
-  ![](https://i.loli.net/2018/08/01/5b6180a5e13f0.png)
+![](https://i.loli.net/2018/08/01/5b6180a5e13f0.png)
 
 ## 使用方法
 
