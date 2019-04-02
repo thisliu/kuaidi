@@ -6,6 +6,7 @@ use Curl\Curl;
 use Kuaidi\Exceptions\TrackingException;
 use Kuaidi\Traces;
 use Kuaidi\Waybill;
+use Campo\UserAgent;
 
 class Kuaidi100 implements TrackerInterface, DetectorInterface
 {
@@ -169,7 +170,9 @@ class Kuaidi100 implements TrackerInterface, DetectorInterface
             'postid' => $waybill->id,
             'type'   => $this->getExpressCode($waybill),
         ]);
-        $curl = (new Curl())->get($apiUrl);
+        $curl = (new Curl())
+            ->setHeader('User-Agent', UserAgent::random())
+            ->get($apiUrl);
         $response = static::getJsonResponse($curl);
 
         if ($response->status != 200) {

@@ -5,7 +5,8 @@
     "license": "MIT",
     "require": {
         "php": ">=5.4",
-        "curl/curl": "^1.5"
+        "curl/curl": "^1.5",
+        "campo/random-user-agent": "^1.3"
     },
     "require-dev": {
         "phpstan/phpstan": "*"
