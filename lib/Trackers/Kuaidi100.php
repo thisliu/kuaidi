@@ -2,11 +2,11 @@
 
 namespace Kuaidi\Trackers;
 
+use Campo\UserAgent;
 use Curl\Curl;
 use Kuaidi\Exceptions\TrackingException;
 use Kuaidi\Traces;
 use Kuaidi\Waybill;
-use Campo\UserAgent;
 
 class Kuaidi100 implements TrackerInterface, DetectorInterface
 {
