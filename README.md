@@ -1,5 +1,7 @@
 # Kuaidi - 免费快递查询扩展包
 
+# 已弃用，请关注新项目：<https://github.com/finecho/logistics>
+
 📦 集成「快递100」、「快递网」、「快递鸟」三家快递查询接口，并统一调用方式。
 
 ❤️ 本项目 [GitHub](https://github.com/wi1dcard/kuaidi) / [Gitee(码云)](https://gitee.com/wi1dcard/kuaidi)。
